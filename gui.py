@@ -44,3 +44,17 @@ class RetinaAnalyzerApp(ctk.CTk):
 if __name__ == "__main__":
     app = RetinaAnalyzerApp()
     app.mainloop()
+
+    def process_image(self):
+        if not self.image_path:
+            messagebox.showerror("Erro", "Nenhuma imagem foi selecionada!")
+            return
+
+        try:
+            # Placeholder para análise (será integrado com image_processing.py)
+            messagebox.showinfo("Processar", "A funcionalidade será implementada em breve.")
+        except Exception as e:
+            messagebox.showerror("Erro", f"Ocorreu um erro: {str(e)}")
+
+        self.label_status = ctk.CTkLabel(self, text="Processamento iniciado...")
+        self.label_status.pack(pady=10)
