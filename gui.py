@@ -1,6 +1,9 @@
 import customtkinter as ctk
 from tkinter import filedialog, messagebox
 from PIL import Image, ImageTk
+import matplotlib.pyplot as plt
+from image_processing import analisar_retina
+import cv2
 
 class RetinaAnalyzerApp(ctk.CTk):
     def __init__(self):
@@ -20,6 +23,9 @@ class RetinaAnalyzerApp(ctk.CTk):
 
         self.button_select = ctk.CTkButton(self, text="Selecionar Imagem", command=self.select_image)
         self.button_select.pack(pady=10)
+
+        self.button_process = ctk.CTkButton(self, text="Processar", command=self.process_image)
+        self.button_process.pack(pady=10)
 
         self.image_frame = ctk.CTkFrame(self, width=300, height=300, corner_radius=10)
         self.image_frame.pack(pady=20)
@@ -41,20 +47,24 @@ class RetinaAnalyzerApp(ctk.CTk):
             self.image_preview_label.image = img_tk
             self.image_preview_label.pack()
 
-if __name__ == "__main__":
-    app = RetinaAnalyzerApp()
-    app.mainloop()
-
     def process_image(self):
         if not self.image_path:
             messagebox.showerror("Erro", "Nenhuma imagem foi selecionada!")
             return
 
         try:
-            # Placeholder para análise (será integrado com image_processing.py)
-            messagebox.showinfo("Processar", "A funcionalidade será implementada em breve.")
-        except Exception as e:
-            messagebox.showerror("Erro", f"Ocorreu um erro: {str(e)}")
+            img_original, img_gray, img_equalizada, img_suave = analisar_retina(self.image_path)
+            
+            plt.figure(figsize=(10, 6))
+            plt.subplot(1, 3, 1), plt.imshow(cv2.cvtColor(img_original, cv2.COLOR_BGR2RGB)), plt.title('Original')
+            plt.subplot(1, 3, 2), plt.imshow(img_gray, cmap='gray'), plt.title('Cinza')
+            plt.subplot(1, 3, 3), plt.imshow(img_suave, cmap='gray'), plt.title('Suavizada')
+            plt.tight_layout()
+            plt.show()
 
-        self.label_status = ctk.CTkLabel(self, text="Processamento iniciado...")
-        self.label_status.pack(pady=10)
+        except Exception as e:
+            messagebox.showerror("Erro", f"Ocorreu um erro ao processar a imagem: {str(e)}")
+
+if __name__ == "__main__":
+    app = RetinaAnalyzerApp()
+    app.mainloop()
