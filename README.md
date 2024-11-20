@@ -33,3 +33,13 @@ Projeto para a disciplina de Processamento de imagem e visão computacional
 ## Autores
 - Julio Spanholi (183154@upf.br)
 - João Paulo de Avila (178898@upf.br)
+
+## Uso 
+- Carregue imagens nos formatos `.png`, `.jpg` ou `.jpeg`.
+![image](https://github.com/user-attachments/assets/a60b08fe-037c-4d84-af68-a8774108d204)
+
+Por exemplo: 
+![image](https://github.com/user-attachments/assets/e7d66d18-6356-4282-9a8a-65d719d37fd0)
+
+Ao clicar em "Processar" o software irá analisar e dar o diagnóstico
+![image](https://github.com/user-attachments/assets/72ea3243-149b-4e96-9c49-3cb89a3f64bc)
