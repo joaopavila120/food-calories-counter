@@ -45,4 +45,5 @@ Por exemplo:
 
 Ao clicar em "Processar" o software irá analisar e dar o diagnóstico
 
-![image](https://github.com/user-attachments/assets/72ea3243-149b-4e96-9c49-3cb89a3f64bc)
+![image](https://github.com/user-attachments/assets/7c94f336-de23-4213-86e8-9c78c5cb027e)
+
