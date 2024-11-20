@@ -1,9 +1,8 @@
 import customtkinter as ctk
 from tkinter import filedialog, messagebox
 from PIL import Image, ImageTk
-import matplotlib.pyplot as plt
 from image_processing import analisar_retina
-import cv2
+import matplotlib.pyplot as plt
 
 class RetinaAnalyzerApp(ctk.CTk):
     def __init__(self):
@@ -53,15 +52,18 @@ class RetinaAnalyzerApp(ctk.CTk):
             return
 
         try:
-            img_original, img_gray, img_equalizada, img_suave = analisar_retina(self.image_path)
+            img_original, img_gray, img_tophat, bordas, status = analisar_retina(self.image_path)
             
-            plt.figure(figsize=(10, 6))
-            plt.subplot(1, 3, 1), plt.imshow(cv2.cvtColor(img_original, cv2.COLOR_BGR2RGB)), plt.title('Original')
-            plt.subplot(1, 3, 2), plt.imshow(img_gray, cmap='gray'), plt.title('Cinza')
-            plt.subplot(1, 3, 3), plt.imshow(img_suave, cmap='gray'), plt.title('Suavizada')
+            plt.figure(figsize=(12, 8))
+            plt.subplot(1, 4, 1), plt.imshow(img_original), plt.title('Original')
+            plt.subplot(1, 4, 2), plt.imshow(img_gray, cmap='gray'), plt.title('Cinza')
+            plt.subplot(1, 4, 3), plt.imshow(img_tophat, cmap='gray'), plt.title('Vasos Realçados')
+            plt.subplot(1, 4, 4), plt.imshow(bordas, cmap='gray'), plt.title(f"Diagnóstico: {status}")
             plt.tight_layout()
             plt.show()
 
+        except ValueError as e:
+            messagebox.showwarning("Aviso", str(e))
         except Exception as e:
             messagebox.showerror("Erro", f"Ocorreu um erro ao processar a imagem: {str(e)}")
 
