@@ -47,3 +47,5 @@ Ao clicar em "Processar" o software irá analisar e dar o diagnóstico
 
 ![image](https://github.com/user-attachments/assets/7c94f336-de23-4213-86e8-9c78c5cb027e)
 
+## Demonstração em vídeo
+https://github.com/user-attachments/assets/5f1f76a3-eeba-4cd0-9afa-f3d5ffee636e
