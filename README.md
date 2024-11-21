@@ -13,7 +13,7 @@ Projeto para a disciplina de Processamento de imagem e visão computacional
   - Equalização de histograma para realçar detalhes.
   - Detecção de bordas e estruturas relevantes.
   - Identificação de riscos com base em características da imagem.
-- **Resultados **: Exibe etapas do processamento e diagnóstico.
+- **Resultados**: Exibe etapas do processamento e diagnóstico.
 
 ---
 ## 🔧 Configuração e Uso
