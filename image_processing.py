@@ -29,22 +29,22 @@ def analisar_retina(imagem_caminho):
 
     return img_original_rgb, img, destaca_estruturas, bordas, status
 
-# Essa função verifica se uma imagem fornecida apresenta características típicas de uma retina.
 def verificar_imagem_retina(img):
-    # Converte a imagem para tons de cinza
+    # Converte a imagem
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    # Detecta bordas na imagem
+    # Detecta bordas (com limiares de 50 e 150)
     bordas = cv2.Canny(img_gray, 50, 150)
+    # Conta os pixels brancos
     quantidade_bordas = np.sum(bordas > 0)
 
-    # Calcula a proporção de pixels vermelhos (indicador de retina)
+    # Calcula a proporção de pixels vermelhos
     proporcao_red = np.sum(img[:, :, 2] > 100) / (img.shape[0] * img.shape[1])
     
     # Encontra contornos com base nas bordas
     contornos, _ = cv2.findContours(bordas, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-    # Conta áreas com formato circular (como o disco óptico)
+    # Conta áreas com formato circular
     areas_circulares = 0
     for contorno in contornos:
         area = cv2.contourArea(contorno)
@@ -53,6 +53,7 @@ def verificar_imagem_retina(img):
             continue
         circularidade = 4 * np.pi * (area / (perimetro ** 2))
         if 0.7 < circularidade < 1.2:
+            # o contorno é considerado circular.
             areas_circulares += 1
 
     # Valida critérios típicos de retina
